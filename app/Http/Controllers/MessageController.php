@@ -44,8 +44,8 @@ class MessageController extends Controller
         
         Mail::send('messages.send', $data, function($mail) use ($to_name, $to_email,$emai,$name,$body) {
             $mail->to($to_email, $to_name)
-                 ->subject('JUANGCASWEBDD NUEVO MENSAJE');
-            $mail->from($emai,$name);
+                 ->subject('JUANGCASWEBDD NUEVO MENSAJE')
+                 ->from($emai,$name);
         });
         $dtSend = new Datetime;
         Mail::send('messages.reply', $data, function($mail) use ($to_name, $to_email,$emai,$name,$body) {
@@ -59,7 +59,7 @@ class MessageController extends Controller
         $message->email = $emai;
         $message->body = $body;
         $message->sent_at = $dtSend;
-        $message->replied_at = $dtReply_
+        $message->replied_at = $dtReply;
         $message->save();
     }
 
